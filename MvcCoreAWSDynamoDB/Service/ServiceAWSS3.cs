@@ -27,10 +27,11 @@ namespace MvcCoreAWSDynamoDB.Service
         {
             PutObjectRequest request = new PutObjectRequest()
             {
-                InputStream = stream,
+                InputStream = stream,                
                 Key = fileName,
-                BucketName = bucketName
+                BucketName = this.bucketName               
             };
+
 
             PutObjectResponse response =
                 await this.awsClient.PutObjectAsync(request);
@@ -49,15 +50,24 @@ namespace MvcCoreAWSDynamoDB.Service
         {
             ListVersionsResponse response =
                 await this.awsClient.ListVersionsAsync
-                (this.bucketName);
+                (this.bucketName);            
             return response.Versions.Select(x => x.Key).Distinct().ToList();
         }
 
         public async Task<bool> DeleteFileAsync(String fileName)
         {
+            var deleteobjrequest = new DeleteObjectRequest
+            {
+                BucketName = bucketName,
+                Key = fileName,
+                VersionId = null
+            };
+            await awsClient.DeleteObjectAsync(deleteobjrequest);
+
             DeleteObjectResponse response =
                 await this.awsClient.DeleteObjectAsync
                 (this.bucketName, fileName);
+            
             if (response.HttpStatusCode == HttpStatusCode.NoContent)
             {
                 return true;
