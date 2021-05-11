@@ -3,14 +3,25 @@
 @{
     ViewData["Title"] = "ListCoches";
 }
+@if (Model.Count() < 1 )
+{
+    <h1>Sin coches, cree un nuevo coche para añadir a la lista</h1>
+    <p>
+        <a asp-action="CreateCar" asp-controller="Coches">
+            Crear un nuevo coche
+        </a>
+    </p>
+}
+else
+{
+    <h1>ListCoches</h1>
 
-<h1>ListCoches</h1>
+    <p>
+        <a asp-action="CreateCar" asp-controller="Coches">
+            Crear un nuevo coche
+        </a>
+    </p>
 
-<p>
-    <a asp-action="CreateCar" asp-controller="Coches">
-        Crear un nuevo coche
-    </a>
-</p>
 <table class="table">
     <thead>
         <tr>
@@ -33,33 +44,35 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdCoche)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Marca)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Modelo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.VelocidadMaxima)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Imagen)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                <a asp-action="DetailsCoche" asp-controller="Coches" asp-route-id="@item.IdCoche">
-                    Detalles
-                </a> |
-                <a asp-action="DeleteCar" asp-controller="Coches" asp-route-id="@item.IdCoche">
-                    Eliminar
-                </a> |
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdCoche)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Marca)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Modelo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VelocidadMaxima)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Imagen)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    <a asp-action="DetailsCoche" asp-controller="Coches" asp-route-id="@item.IdCoche">
+                        Detalles
+                    </a> |
+                    <a asp-action="DeleteCar" asp-controller="Coches" asp-route-idCoche="@item.IdCoche">
+                        Eliminar
+                    </a> |
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+}
