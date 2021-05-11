@@ -60,5 +60,10 @@ namespace MvcCoreAWSDynamoDB.Controllers
             await this.service.DeleteCocheAsync(idCoche);
             return RedirectToAction("Index");
         }
+
+        public IActionResult UpdateCar()
+        {
+            return View();
+        }
     }
 }
