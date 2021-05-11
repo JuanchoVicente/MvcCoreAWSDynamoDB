@@ -1,0 +1,58 @@
+﻿@model MvcCoreAWSDynamoDB.Models.Coche
+
+@{
+    ViewData["Title"] = "DetailsCoche";
+}
+
+<h1>DetailsCoche</h1>
+
+<div>
+    <h4>Coche</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.IdCoche)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.IdCoche)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Marca)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Marca)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Modelo)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Modelo)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.VelocidadMaxima)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.VelocidadMaxima)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Imagen)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Imagen)
+        </dd>
+    </dl>
+</div>
+@if (Model.Motor != null)
+{
+    <h2 style="color:blue">
+        Tipo: @Model.Motor.Tipo,
+        Caballos: @Model.Motor.Caballos,
+        Cilindrada: @Model.Motor.Cilindrada
+        </h2>
+    }
+
+
+<div>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    <a asp-action="Index">Back to List</a>
+</div>
