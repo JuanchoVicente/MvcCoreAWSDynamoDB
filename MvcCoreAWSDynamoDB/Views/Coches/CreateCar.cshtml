@@ -38,19 +38,24 @@
                 <span asp-validation-for="Imagen" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="checkbox"  name="incluirmotor"  value="yes"  class="form-control" />Incluir motor
             </div>
-            <input type="checkbox"  name="incluirmotor" value="yes"  class="form-control"/>Incluir motor
-            <label>Tipo de motor</label>
-            <input type ="text"  name="tipo"  class="form-control"   /><br  />
-            <label>Caballos </label>
-            <input type ="text"  name="caballos"  class="form-control"   /><br  />
-            <label>Cilindrada</label>
-            <input type ="text"  name="cilindrada"  class="form-control"   />
+            <div class="form-group">
+                <label>Tipo de motor</label>
+                <input type="text"  name="tipo"  class="form-control"   /><br  />
+            </div>
+            <div class="form-group">
+                <label>Caballos </label>
+                <input type="text"  name="caballos"  class="form-control"   /><br  />
+            </div>
+            <div class="form-group">
+                <label>Cilindrada</label>
+                <input type="text"  name="cilindrada"  class="form-control"   />
+            </div>
             <div class="form-group">
                 <input type="submit"  value="Create"  class="btn btn-primary"   />
-    </div>
-    </form>
+            </div>
+        </form>
 </div>
 </div>
 
