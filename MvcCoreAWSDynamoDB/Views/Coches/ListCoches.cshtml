@@ -2,7 +2,17 @@
 
 @{
     ViewData["Title"] = "ListCoches";
+    List<String> imgs = ViewData["bucket"] as List<String>;
 }
+
+@if(imgs != null)
+{
+    @foreach(String foto in imgs)
+    {
+        <h1>nombre: @foto</h1>
+    }
+}
+
 @if (Model.Count() < 1 )
 {
     <h1>Sin coches, cree un nuevo coche para añadir a la lista</h1>

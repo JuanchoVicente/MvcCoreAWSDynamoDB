@@ -12,17 +12,17 @@ namespace MvcCoreAWSDynamoDB.Service
 {
     public class ServiceAWSS3
     {
-        private String bucketName;
         private IAmazonS3 awsClient;
+        private String bucketName;
 
         public ServiceAWSS3(IAmazonS3 awsclient
             , IConfiguration configuration)
         {
             this.awsClient = awsclient;
-            this.bucketName = configuration["AWS:Bucktname"];
+            this.bucketName = configuration["AWSS3:BucketName"];
         }
 
-        public async Task<bool> UploadFile(Stream stream
+        public async Task<bool> UploadFileAsync(Stream stream
             , String fileName)
         {
             PutObjectRequest request = new PutObjectRequest()
@@ -45,20 +45,20 @@ namespace MvcCoreAWSDynamoDB.Service
             }            
         }
 
-        public async Task<List<String>> GetS3Files()
+        public async Task<List<String>> GetS3FilesAsync()
         {
             ListVersionsResponse response =
                 await this.awsClient.ListVersionsAsync
                 (this.bucketName);
-            return response.Versions.Select(x => x.Key).ToList();
+            return response.Versions.Select(x => x.Key).Distinct().ToList();
         }
 
-        public async Task<bool> DeleteFile(String fileName)
+        public async Task<bool> DeleteFileAsync(String fileName)
         {
             DeleteObjectResponse response =
                 await this.awsClient.DeleteObjectAsync
-                    (this.bucketName, fileName);
-            if (response.HttpStatusCode == HttpStatusCode.OK)
+                (this.bucketName, fileName);
+            if (response.HttpStatusCode == HttpStatusCode.NoContent)
             {
                 return true;
             }
@@ -68,7 +68,7 @@ namespace MvcCoreAWSDynamoDB.Service
             }
         }
 
-        public async Task<Stream> GetFile(String fileName)
+        public async Task<Stream> GetFileAsync(String fileName)
         {
             GetObjectResponse response =
                 await this.awsClient.GetObjectAsync(this.bucketName, fileName);
@@ -81,5 +81,6 @@ namespace MvcCoreAWSDynamoDB.Service
                 return null;
             }
         }
+
     }
 }
