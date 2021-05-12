@@ -1,0 +1,51 @@
+﻿<div>
+    <label>Informacion general sobre los permisos</label>
+    <h3>
+        Tiene que ser de acceso publico
+    </h3>
+    <label>Bloquear acceso publico (configuracion del bucket)</label>
+    <h3>
+        Editar y quitar el bloqueo
+    </h3>
+    <label>S3 Management Console</label>
+    <h3>Politica de bucket</h3>
+    <p>
+        {
+        "Version": "2012-10-17",
+        "Id": "Policy1620753851872",
+        "Statement": [
+        {
+        "Sid": "Stmt1620753848563",
+        "Effect": "Allow",
+        "Principal": "*",
+        "Action": "s3:GetObject",
+        "Resource": "arn:aws:s3:::bucket-coches-jcvv-v2/*"
+        }
+        ]
+        }
+    </p>
+    <h3>Uso compartido de recursos entre origenes (CORS)</h3>
+    <p>
+        [
+        {
+        "AllowedHeaders": [
+        "*"
+        ],
+        "AllowedMethods": [
+        "PUT",
+        "POST",
+        "DELETE"
+        ],
+        "AllowedOrigins": [
+        "http://www.example.com"
+        ],
+        "ExposeHeaders": [
+        "x-az-server-side-encryption",
+        "x-amz-request-d",
+        "x-amz-id-2"
+        ],
+        "MaxAgeSeconds": 3000
+        }
+        ]
+    </p>
+</div>

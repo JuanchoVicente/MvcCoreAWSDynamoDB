@@ -67,5 +67,10 @@ namespace MvcCoreAWSDynamoDB.Controllers
             await this.service.DeleteFileAsync(fileName);
             return RedirectToAction("Index");
         }
+
+        public IActionResult PermisosBucket()
+        {
+            return View();
+        }
     }
 }

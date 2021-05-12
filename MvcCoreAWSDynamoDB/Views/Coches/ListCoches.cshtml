@@ -2,15 +2,6 @@
 
 @{
     ViewData["Title"] = "ListCoches";
-    List<String> imgs = ViewData["bucket"] as List<String>;
-}
-
-@if(imgs != null)
-{
-    @foreach(String foto in imgs)
-    {
-        <h1>nombre: @foto</h1>
-    }
 }
 
 @if (Model.Count() < 1 )
@@ -47,9 +38,6 @@ else
             <th>
                 @Html.DisplayNameFor(model => model.VelocidadMaxima)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Imagen)
-            </th>
             <th></th>
         </tr>
     </thead>
@@ -70,16 +58,18 @@ else
                     @Html.DisplayFor(modelItem => item.VelocidadMaxima)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Imagen)
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ })
                 </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                    <a asp-action="DetailsCoche" asp-controller="Coches" asp-route-id="@item.IdCoche">
+                <td>        
+                    <p>En los detalles se vera la imagen del coche</p>
+                    <a class="btn btn-info" asp-action="DetailsCoche" asp-controller="Coches" asp-route-id="@item.IdCoche">
                         Detalles
-                    </a> |
-                    <a asp-action="DeleteCar" asp-controller="Coches" asp-route-idCoche="@item.IdCoche">
+                    </a>
+                </td>
+                <td>                   
+                    <a class="btn btn-danger" asp-action="DeleteCar" asp-controller="Coches" asp-route-idCoche="@item.IdCoche">
                         Eliminar
-                    </a> |
+                    </a>
                 </td>
             </tr>
         }

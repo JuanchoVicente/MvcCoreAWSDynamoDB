@@ -34,8 +34,6 @@ namespace MvcCoreAWSDynamoDB.Controllers
 
         public async Task<IActionResult> ListCoches()
         {
-            List<String> files = await this.serviceAWSS3.GetS3FilesAsync();            
-            ViewData["bucket"] = files as List<String>;
             return View(await this.service.GetCochesAsync());
         }
 
@@ -66,7 +64,8 @@ namespace MvcCoreAWSDynamoDB.Controllers
                     ViewData["MENSAJE"] = "Archivo en AWS Bucket: " + respuesta;
                 }
             }
-
+            Stream st =  await this.serviceAWSS3.GetFileAsync(file.FileName);
+            car.Imagen = "https://bucket-coches-jcvv-v2.s3.amazonaws.com/" + file.FileName;
                 if (incluirmotor != null)
                 {
                     car.Motor = new Motor();
